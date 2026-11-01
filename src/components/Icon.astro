@@ -1,0 +1,145 @@
+---
+interface Props {
+  name:
+    | "phone"
+    | "whatsapp"
+    | "map-pin"
+    | "clock"
+    | "mail"
+    | "graduation-cap"
+    | "book-open"
+    | "award"
+    | "user"
+    | "check"
+    | "arrow-right"
+    | "menu"
+    | "x";
+  class?: string;
+  size?: number;
+  "aria-hidden"?: string;
+  "aria-label"?: string;
+}
+
+const {
+  name,
+  class: className = "",
+  size = 24,
+  "aria-hidden": ariaHidden = "true",
+  "aria-label": ariaLabel,
+} = Astro.props;
+---
+
+{/* TODO: swap for Noun Project icon */}
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class:list={["inline-block shrink-0 align-middle", className]}
+  aria-hidden={ariaHidden}
+  aria-label={ariaLabel}
+  data-icon={name}
+>
+  {/* Temporary stand-in icon paths (Lucide MIT) */}
+  {name === "phone" && (
+    /* TODO: swap for Noun Project icon (phone) */
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+  )}
+
+  {name === "whatsapp" && (
+    /* TODO: swap for Noun Project icon (whatsapp) */
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  )}
+
+  {name === "map-pin" && (
+    /* TODO: swap for Noun Project icon (map-pin) */
+    <g>
+      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+      <circle cx="12" cy="10" r="3" />
+    </g>
+  )}
+
+  {name === "clock" && (
+    /* TODO: swap for Noun Project icon (clock) */
+    <g>
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </g>
+  )}
+
+  {name === "mail" && (
+    /* TODO: swap for Noun Project icon (mail) */
+    <g>
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </g>
+  )}
+
+  {name === "graduation-cap" && (
+    /* TODO: swap for Noun Project icon (graduation-cap) */
+    <g>
+      <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+      <path d="M22 10v6" />
+      <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+    </g>
+  )}
+
+  {name === "book-open" && (
+    /* TODO: swap for Noun Project icon (book-open) */
+    <g>
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </g>
+  )}
+
+  {name === "award" && (
+    /* TODO: swap for Noun Project icon (award) */
+    <g>
+      <circle cx="12" cy="8" r="6" />
+      <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+    </g>
+  )}
+
+  {name === "user" && (
+    /* TODO: swap for Noun Project icon (user) */
+    <g>
+      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+      <circle cx="12" cy="7" r="4" />
+    </g>
+  )}
+
+  {name === "check" && (
+    /* TODO: swap for Noun Project icon (check) */
+    <polyline points="20 6 9 17 4 12" />
+  )}
+
+  {name === "arrow-right" && (
+    /* TODO: swap for Noun Project icon (arrow-right) */
+    <g>
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </g>
+  )}
+
+  {name === "menu" && (
+    /* TODO: swap for Noun Project icon (menu) */
+    <g>
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </g>
+  )}
+
+  {name === "x" && (
+    /* TODO: swap for Noun Project icon (x) */
+    <g>
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </g>
+  )}
+</svg>

@@ -1,16 +1,129 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import LogoGlow from '../components/LogoGlow.astro';
+import Icon from '../components/Icon.astro';
+import PlaceholderNotice from '../components/PlaceholderNotice.astro';
+import { getStats, getCentres } from '../utils/data';
+
+const stats = getStats();
+const centres = getCentres();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Jaishnu IIT Gurukul · Pace IIT & Medical, Jalgaon & Bhusawal | Foundation Shell Preview"
+  description="Classroom coaching for IIT-JEE, NEET and Foundation in Jalgaon and Bhusawal, Maharashtra. Right Dream Right Place."
+>
+  {/* Step 3: Hero & LogoGlow Core Showcase */}
+  <Hero />
+
+  {/* Technical Calibration & Interaction Validation Panel */}
+  <section class="section-fluid bg-[#0c0c0c] border-b border-[#262626]">
+    <div class="container-wide">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-[#262626]">
+          <div>
+            <span class="text-xs font-mono uppercase tracking-wider text-[#FFCB00] block mb-1">
+              Step 3 Demonstration
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-mono font-bold text-white">
+              Foundation Shell & Logo Light Effect Preview
+            </h2>
+          </div>
+          <span class="px-3 py-1 text-xs font-mono bg-[#141414] border border-[#333333] text-[#aaaaaa] rounded-full">
+            Process Step 3 of 6
+          </span>
+        </div>
+
+        <p class="text-base sm:text-lg text-[#cccccc] mb-8 leading-relaxed">
+          The foundation shell, responsive typography, WCAG AAA contrast, and the hardware-accelerated <code class="font-mono text-[#FFCB00] bg-[#141414] px-1.5 py-0.5 rounded">&lt;LogoGlow /&gt;</code> component are now active. Hover over or tap the logo emblem below to inspect the light-from-behind wave and cursor-lean effect.
+        </p>
+
+        {/* Live LogoGlow Interactive Inspection Box */}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {/* Dark Mode Lit State Inspection */}
+          <div class="surface-card flex flex-col items-center justify-center p-8 text-center bg-[#090909]">
+            <span class="text-xs font-mono uppercase text-[#999999] mb-4">
+              Dark Mode (Hero Variant) · Hover or Tap
+            </span>
+            <div class="w-full max-w-[280px] my-4">
+              <LogoGlow theme="dark" size="medium" />
+            </div>
+            <p class="text-xs font-mono text-[#888888] mt-4">
+              Rays: 30% default &rarr; 100% staggered wave. Book/pen: #cdbba9 &rarr; #f1e6d8. Radial glow clipped strictly above baseline.
+            </p>
+          </div>
+
+          {/* Light Mode Static Palette Inspection */}
+          <div class="surface-card flex flex-col items-center justify-center p-8 text-center bg-[#f7f6f2] text-black">
+            <span class="text-xs font-mono uppercase text-[#666666] mb-4">
+              Light Mode Variant · Original Inks (No Glow)
+            </span>
+            <div class="w-full max-w-[280px] my-4">
+              <LogoGlow theme="light" size="medium" />
+            </div>
+            <p class="text-xs font-mono text-[#666666] mt-4">
+              Book: #6C4638, Wordmark: #1B1918, Tagline: #565757. Zero glow or ray animation.
+            </p>
+          </div>
+        </div>
+
+        {/* Data Architecture & Placeholder System Check */}
+        <div class="surface-card mb-8">
+          <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#262626]">
+            <h3 class="text-lg font-mono font-bold text-white flex items-center gap-2">
+              <Icon name="award" size={20} class="text-[#FFCB00]" />
+              <span>Editable Data Schema Verification</span>
+            </h3>
+            <PlaceholderNotice entryType="stats" id="stat-placeholder" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {stats.map((stat) => (
+              <div class="p-4 rounded-xl bg-[#1a1a1a] border border-[#262626]">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-mono text-[#999999]">{stat.label}</span>
+                  {stat.isPlaceholder && (
+                    <span class="text-[11px] font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-800">
+                      TODO
+                    </span>
+                  )}
+                </div>
+                <div class="text-2xl font-mono font-bold text-white my-1">
+                  {stat.value}
+                </div>
+                <div class="text-xs text-[#888888] font-mono">
+                  {stat.subtext}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Centres Preview */}
+        <div class="surface-card">
+          <h3 class="text-lg font-mono font-bold text-white mb-4 flex items-center gap-2">
+            <Icon name="map-pin" size={20} class="text-[#FFCB00]" />
+            <span>Centres Architecture Preview</span>
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {centres.map((centre) => (
+              <div class="p-4 rounded-xl bg-[#1a1a1a] border border-[#262626]">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="font-mono font-bold text-white text-base">{centre.city} Centre</span>
+                  {centre.isPlaceholder && (
+                    <span class="text-[11px] font-mono text-amber-400 bg-amber-950/50 px-2 py-0.5 rounded border border-amber-800">
+                      TODO: Address
+                    </span>
+                  )}
+                </div>
+                <p class="text-xs font-mono text-[#888888] mb-1">{centre.name}</p>
+                <p class="text-xs font-mono text-[#666666]">PIN: {centre.pinCode} | Status: Ready for real address</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

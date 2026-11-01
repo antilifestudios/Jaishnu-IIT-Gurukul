@@ -1,0 +1,25 @@
+---
+interface Props {
+  entryType: string;
+  id?: string;
+  class?: string;
+}
+
+const { entryType, id = "", class: className = "" } = Astro.props;
+const isDev = import.meta.env.DEV;
+---
+
+{isDev && (
+  <div
+    class:list={[
+      "inline-flex items-center gap-2 px-3 py-1 text-xs font-mono font-medium rounded border",
+      "bg-amber-950/40 text-amber-300 border-amber-600/50 my-1",
+      className
+    ]}
+    role="status"
+    aria-label="Placeholder marker"
+  >
+    <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+    <span>TODO: Replace placeholder ({entryType}{id ? ` · ${id}` : ""})</span>
+  </div>
+)}

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "stat-1",
+    "label": "Centres in Khandesh",
+    "value": "2",
+    "subtext": "Jalgaon & Bhusawal",
+    "isPlaceholder": false
+  },
+  {
+    "id": "stat-placeholder",
+    "label": "PLACEHOLDER: replace me",
+    "value": "PLACEHOLDER: replace me",
+    "subtext": "PLACEHOLDER: replace me",
+    "isPlaceholder": true
+  }
+]

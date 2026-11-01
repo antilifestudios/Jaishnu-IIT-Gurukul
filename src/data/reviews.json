@@ -1,0 +1,13 @@
+[
+  {
+    "id": "review-placeholder",
+    "authorName": "PLACEHOLDER: replace me",
+    "role": "Parent",
+    "batchYear": "2023-2024",
+    "course": "NEET 2-Year Program",
+    "reviewText": "PLACEHOLDER: replace me",
+    "rating": 5,
+    "consent": false,
+    "isPlaceholder": true
+  }
+]

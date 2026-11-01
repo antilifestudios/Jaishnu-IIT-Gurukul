@@ -1,0 +1,361 @@
+---
+import StaticLogo from './StaticLogo.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/courses', label: 'Courses' },
+  { href: '/faculty', label: 'Faculty' },
+  { href: '/results', label: 'Results' },
+  { href: '/reviews', label: 'Reviews' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/' && currentPath === '/') return true;
+  if (href !== '/' && currentPath.startsWith(href)) return true;
+  return false;
+}
+---
+
+<header class="sticky top-0 z-40 w-full bg-[#090909]/95 backdrop-blur-md border-b border-[#262626]">
+  {/* Full-width flex row with space-between and standard horizontal page padding */}
+  <div class="w-full px-5 md:px-8 flex items-center justify-between h-20">
+    {/* LEFT group: Brand block followed by nav links, flush to the left edge */}
+    <div class="flex items-center gap-6 xl:gap-8 min-w-0">
+      {/* Brand Block */}
+      <div class="flex items-center gap-3 shrink-0">
+        <StaticLogo height={42} />
+        <div class="border-l border-[#262626] pl-3 py-0.5">
+          <span class="block text-[11px] font-mono tracking-wider text-[#999999] uppercase leading-tight whitespace-nowrap">
+            PACE IIT &amp; MEDICAL PARTNER
+          </span>
+          <span class="block text-xs sm:text-sm font-mono text-white font-medium leading-tight whitespace-nowrap">
+            Jalgaon &amp; Bhusawal
+          </span>
+        </div>
+      </div>
+
+      {/* Nav Links: Home, Courses, Faculty, Results, Reviews */}
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "px-3 py-2 text-base font-mono transition-colors rounded-md whitespace-nowrap",
+              isActive(link.href)
+                ? "text-[#FFCB00] font-semibold"
+                : "text-[#d1d1d1] hover:text-white hover:bg-[#141414] no-underline"
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    {/* RIGHT group: Call dropdown button + WhatsApp button, flush to the right edge */}
+    <div class="flex items-center gap-3 shrink-0">
+      {/* Call Dropdown (Desktop & Tablet) */}
+      <div class="relative hidden sm:block" id="call-dropdown-container">
+        <button
+          id="call-dropdown-btn"
+          type="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="call-dropdown-panel"
+          class="inline-flex items-center justify-center gap-2 h-[44px] min-w-[124px] px-4 font-mono text-sm font-semibold text-white bg-[#141414] border border-[#333333] rounded-full hover:bg-[#1c1c1c] hover:border-[#555555] active:scale-95 transition-all whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFCB00]"
+        >
+          <Icon name="phone" size={18} class="text-[#FFCB00] shrink-0" />
+          <span class="whitespace-nowrap">Call Us</span>
+          <svg
+            class="w-4 h-4 text-[#999999] transition-transform duration-200 chevron-icon shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+
+        {/* Floating Dropdown Panel */}
+        <div
+          id="call-dropdown-panel"
+          role="menu"
+          aria-label="Phone Numbers"
+          class="hidden absolute right-0 mt-2 w-80 bg-[#141414] border border-[#262626] rounded-2xl shadow-2xl p-3 z-50 transition-all"
+        >
+          {/* Jalgaon Group */}
+          <div class="px-3 pt-2 pb-1 text-xs font-mono font-bold tracking-wider text-[#FFCB00] uppercase">
+            Jalgaon
+          </div>
+          <div class="flex flex-col gap-1">
+            <a
+              href="tel:+919607888009"
+              role="menuitem"
+              class="call-link flex items-center justify-between px-3 py-2 rounded-xl text-sm font-mono text-white hover:bg-[#1c1c1c] hover:text-[#FFCB00] transition-colors no-underline group"
+            >
+              <span>9607888009</span>
+              <Icon name="phone" size={15} class="text-[#666666] group-hover:text-[#FFCB00]" />
+            </a>
+            <a
+              href="tel:+919860267927"
+              role="menuitem"
+              class="call-link flex items-center justify-between px-3 py-2 rounded-xl text-sm font-mono text-white hover:bg-[#1c1c1c] hover:text-[#FFCB00] transition-colors no-underline group"
+            >
+              <div>
+                <span class="block">9860267927</span>
+                <span class="block text-[11px] font-sans text-[#999999]">Center Director</span>
+              </div>
+              <Icon name="phone" size={15} class="text-[#666666] group-hover:text-[#FFCB00]" />
+            </a>
+          </div>
+
+          <div class="h-px bg-[#262626] my-2"></div>
+
+          {/* Bhusawal Group */}
+          <div class="px-3 pt-1 pb-1 text-xs font-mono font-bold tracking-wider text-[#FFCB00] uppercase">
+            Bhusawal
+          </div>
+          <div class="flex flex-col gap-1">
+            <a
+              href="tel:+919607883003"
+              role="menuitem"
+              class="call-link flex items-center justify-between px-3 py-2 rounded-xl text-sm font-mono text-white hover:bg-[#1c1c1c] hover:text-[#FFCB00] transition-colors no-underline group"
+            >
+              <span>9607883003</span>
+              <Icon name="phone" size={15} class="text-[#666666] group-hover:text-[#FFCB00]" />
+            </a>
+            <a
+              href="tel:+918551000666"
+              role="menuitem"
+              class="call-link flex items-center justify-between px-3 py-2 rounded-xl text-sm font-mono text-white hover:bg-[#1c1c1c] hover:text-[#FFCB00] transition-colors no-underline group"
+            >
+              <div>
+                <span class="block">8551000666</span>
+                <span class="block text-[11px] font-sans text-[#999999]">Center Director</span>
+              </div>
+              <Icon name="phone" size={15} class="text-[#666666] group-hover:text-[#FFCB00]" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* WhatsApp Button */}
+      <a
+        href="https://wa.me/919607888009?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20Pace%20Jaishnu%20IIT%20Gurukul%20batches"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 h-[44px] min-w-[124px] px-4 font-mono text-sm font-bold text-black bg-[#FFCB00] border border-[#FFCB00] rounded-full hover:bg-[#e6b800] active:scale-95 transition-all whitespace-nowrap focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFCB00] no-underline"
+        aria-label="Enquire via WhatsApp"
+      >
+        <Icon name="whatsapp" size={18} class="text-black shrink-0" />
+        <span class="whitespace-nowrap">WhatsApp</span>
+      </a>
+
+      {/* Mobile Menu Toggle Button */}
+      <button
+        id="mobile-nav-toggle"
+        type="button"
+        class="lg:hidden inline-flex items-center justify-center h-[44px] w-[44px] text-white bg-[#141414] border border-[#333333] rounded-full hover:bg-[#1c1c1c] hover:border-[#555555] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFCB00] shrink-0"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+      >
+        <span class="menu-open-icon flex items-center justify-center">
+          <Icon name="menu" size={20} />
+        </span>
+        <span class="menu-close-icon flex items-center justify-center">
+          <Icon name="x" size={20} />
+        </span>
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile Menu Drawer */}
+  <div
+    id="mobile-nav-drawer"
+    class="hidden lg:hidden border-t border-[#262626] bg-[#090909] px-5 py-6 transition-all"
+    aria-label="Mobile Navigation"
+  >
+    {/* Nav Links: Home, Courses, Faculty, Results, Reviews */}
+    <nav class="flex flex-col gap-1 mb-6">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "flex items-center justify-between py-3 px-3 text-base font-mono rounded-lg transition-colors",
+            isActive(link.href)
+              ? "bg-[#1c1c1c] text-[#FFCB00] font-bold"
+              : "text-[#e0e0e0] hover:bg-[#141414] no-underline"
+          ]}
+        >
+          <span>{link.label}</span>
+          <Icon name="arrow-right" size={16} class="text-[#666666]" />
+        </a>
+      ))}
+    </nav>
+
+    {/* Full-width Call list on mobile */}
+    <div class="border-t border-[#262626] pt-6 mb-2">
+      <div class="flex items-center gap-2 mb-4">
+        <Icon name="phone" size={18} class="text-[#FFCB00]" />
+        <h3 class="text-sm font-mono font-bold tracking-wider text-white uppercase">
+          Call Admissions Directly
+        </h3>
+      </div>
+
+      <div class="space-y-4">
+        {/* Jalgaon Group */}
+        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
+          <div class="text-xs font-mono font-bold text-[#FFCB00] uppercase mb-2">
+            Jalgaon Centre
+          </div>
+          <div class="space-y-2">
+            <a
+              href="tel:+919607888009"
+              class="flex items-center justify-between p-2.5 rounded-lg bg-[#1a1a1a] text-white hover:text-[#FFCB00] text-sm font-mono no-underline"
+            >
+              <span class="font-semibold">9607888009</span>
+              <span class="text-xs text-[#999999] font-sans">Tap to Call</span>
+            </a>
+            <a
+              href="tel:+919860267927"
+              class="flex items-center justify-between p-2.5 rounded-lg bg-[#1a1a1a] text-white hover:text-[#FFCB00] text-sm font-mono no-underline"
+            >
+              <div>
+                <span class="block font-semibold">9860267927</span>
+                <span class="block text-[11px] font-sans text-[#999999]">Center Director</span>
+              </div>
+              <span class="text-xs text-[#999999] font-sans">Tap to Call</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Bhusawal Group */}
+        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
+          <div class="text-xs font-mono font-bold text-[#FFCB00] uppercase mb-2">
+            Bhusawal Centre
+          </div>
+          <div class="space-y-2">
+            <a
+              href="tel:+919607883003"
+              class="flex items-center justify-between p-2.5 rounded-lg bg-[#1a1a1a] text-white hover:text-[#FFCB00] text-sm font-mono no-underline"
+            >
+              <span class="font-semibold">9607883003</span>
+              <span class="text-xs text-[#999999] font-sans">Tap to Call</span>
+            </a>
+            <a
+              href="tel:+918551000666"
+              class="flex items-center justify-between p-2.5 rounded-lg bg-[#1a1a1a] text-white hover:text-[#FFCB00] text-sm font-mono no-underline"
+            >
+              <div>
+                <span class="block font-semibold">8551000666</span>
+                <span class="block text-[11px] font-sans text-[#999999]">Center Director</span>
+              </div>
+              <span class="text-xs text-[#999999] font-sans">Tap to Call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Fixed hamburger toggling: show only menu when closed, only X when open */
+  .menu-open-icon {
+    display: flex;
+  }
+  .menu-close-icon {
+    display: none;
+  }
+  #mobile-nav-toggle[aria-expanded="true"] .menu-open-icon {
+    display: none;
+  }
+  #mobile-nav-toggle[aria-expanded="true"] .menu-close-icon {
+    display: flex;
+  }
+</style>
+
+<script>
+  function setupHeader() {
+    // 1. Mobile navigation toggle setup
+    const toggle = document.getElementById('mobile-nav-toggle');
+    const drawer = document.getElementById('mobile-nav-drawer');
+
+    if (toggle && drawer) {
+      toggle.addEventListener('click', () => {
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!isExpanded));
+        drawer.classList.toggle('hidden');
+      });
+    }
+
+    // 2. Desktop Call Dropdown setup
+    const callBtn = document.getElementById('call-dropdown-btn');
+    const callPanel = document.getElementById('call-dropdown-panel');
+    const callContainer = document.getElementById('call-dropdown-container');
+
+    if (callBtn && callPanel && callContainer) {
+      const chevron = callBtn.querySelector('.chevron-icon');
+
+      function openDropdown() {
+        callBtn?.setAttribute('aria-expanded', 'true');
+        callPanel?.classList.remove('hidden');
+        chevron?.classList.add('rotate-180');
+      }
+
+      function closeDropdown() {
+        callBtn?.setAttribute('aria-expanded', 'false');
+        callPanel?.classList.add('hidden');
+        chevron?.classList.remove('rotate-180');
+      }
+
+      callBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = callBtn.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      });
+
+      // Close on clicking outside
+      document.addEventListener('click', (e) => {
+        if (!callContainer.contains(e.target as Node)) {
+          closeDropdown();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && callBtn.getAttribute('aria-expanded') === 'true') {
+          closeDropdown();
+          callBtn.focus();
+        }
+      });
+
+      // Close when selecting a number link
+      const callLinks = callPanel.querySelectorAll('.call-link');
+      callLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          closeDropdown();
+        });
+      });
+    }
+  }
+
+  setupHeader();
+  document.addEventListener('astro:page-load', setupHeader);
+</script>

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "result-placeholder",
+    "year": 2024,
+    "exam": "JEE_ADVANCED",
+    "studentName": "PLACEHOLDER: replace me",
+    "photoUrl": null,
+    "rank": "PLACEHOLDER: replace me",
+    "score": "PLACEHOLDER: replace me",
+    "category": "General",
+    "consent": false,
+    "isPlaceholder": true
+  }
+]

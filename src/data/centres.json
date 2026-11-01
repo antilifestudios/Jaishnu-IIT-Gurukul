@@ -1,0 +1,32 @@
+[
+  {
+    "id": "jalgaon",
+    "city": "Jalgaon",
+    "name": "Pace IIT & Medical / Jaishnu IIT Gurukul - Jalgaon Centre",
+    "addressLine1": "PLACEHOLDER: replace me",
+    "addressLine2": "PLACEHOLDER: replace me",
+    "landmark": "PLACEHOLDER: replace me",
+    "pinCode": "425001",
+    "phoneNumbers": ["PLACEHOLDER: replace me"],
+    "whatsappNumber": "PLACEHOLDER: replace me",
+    "email": "PLACEHOLDER: replace me",
+    "timings": "PLACEHOLDER: replace me",
+    "mapUrl": "PLACEHOLDER: replace me",
+    "isPlaceholder": true
+  },
+  {
+    "id": "bhusawal",
+    "city": "Bhusawal",
+    "name": "Pace IIT & Medical / Jaishnu IIT Gurukul - Bhusawal Centre",
+    "addressLine1": "PLACEHOLDER: replace me",
+    "addressLine2": "PLACEHOLDER: replace me",
+    "landmark": "PLACEHOLDER: replace me",
+    "pinCode": "425201",
+    "phoneNumbers": ["PLACEHOLDER: replace me"],
+    "whatsappNumber": "PLACEHOLDER: replace me",
+    "email": "PLACEHOLDER: replace me",
+    "timings": "PLACEHOLDER: replace me",
+    "mapUrl": "PLACEHOLDER: replace me",
+    "isPlaceholder": true
+  }
+]

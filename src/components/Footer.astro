@@ -1,0 +1,186 @@
+---
+import StaticLogo from './StaticLogo.astro';
+import Icon from './Icon.astro';
+import { getCentres } from '../utils/data';
+
+const centres = getCentres();
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full bg-[#090909] border-t border-[#262626] pt-16 pb-28 md:pb-16 text-[#cccccc]">
+  <div class="container-wide">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-[#1c1c1c]">
+      {/* Brand Column */}
+      <div class="lg:col-span-1">
+        <StaticLogo height={48} class="mb-4" />
+        <p class="font-mono text-sm text-[#FFCB00] font-medium tracking-wide mb-2">
+          Right Dream Right Place
+        </p>
+        <p class="text-base text-[#aaaaaa] leading-relaxed mb-4">
+          Jaishnu IIT Gurukul is our parent brand, operating under the Pace franchise in Jalgaon & Bhusawal, Maharashtra. Dedicated to classroom coaching for IIT-JEE, NEET, and Foundation.
+        </p>
+        <div class="pt-2">
+          <span class="inline-block px-3 py-1 text-xs font-mono font-medium text-white bg-[#141414] border border-[#262626] rounded-full">
+            Khandesh JEE/NEET Hub
+          </span>
+        </div>
+      </div>
+
+      {/* Jalgaon Centre */}
+      <div>
+        <h2 class="text-lg font-mono font-bold text-white mb-4 flex items-center gap-2">
+          <Icon name="map-pin" size={20} class="text-[#FFCB00]" />
+          <span>Jalgaon Centre</span>
+        </h2>
+        {centres.filter(c => c.id === 'jalgaon').map(centre => (
+          <div class="text-base space-y-2 text-[#b0b0b0]">
+            <p class="mb-1 font-medium text-white">{centre.name}</p>
+            <p class="mb-1 text-sm text-[#999999]">{centre.addressLine1}, {centre.addressLine2}</p>
+            {centre.landmark && <p class="text-sm text-[#888888]">Landmark: {centre.landmark}</p>}
+            <p class="text-sm text-[#888888]">PIN: {centre.pinCode}</p>
+            <div class="pt-2 flex flex-col gap-1 text-sm font-mono">
+              <a href="tel:+919876543210" class="inline-flex items-center gap-2 text-[#FFCB00] hover:underline">
+                <Icon name="phone" size={16} />
+                <span>Call Jalgaon Centre</span>
+              </a>
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:underline">
+                <Icon name="map-pin" size={16} />
+                <span>View on Google Maps</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bhusawal Centre */}
+      <div>
+        <h2 class="text-lg font-mono font-bold text-white mb-4 flex items-center gap-2">
+          <Icon name="map-pin" size={20} class="text-[#FFCB00]" />
+          <span>Bhusawal Centre</span>
+        </h2>
+        {centres.filter(c => c.id === 'bhusawal').map(centre => (
+          <div class="text-base space-y-2 text-[#b0b0b0]">
+            <p class="mb-1 font-medium text-white">{centre.name}</p>
+            <p class="mb-1 text-sm text-[#999999]">{centre.addressLine1}, {centre.addressLine2}</p>
+            {centre.landmark && <p class="text-sm text-[#888888]">Landmark: {centre.landmark}</p>}
+            <p class="text-sm text-[#888888]">PIN: {centre.pinCode}</p>
+            <div class="pt-2 flex flex-col gap-1 text-sm font-mono">
+              <a href="tel:+919876543210" class="inline-flex items-center gap-2 text-[#FFCB00] hover:underline">
+                <Icon name="phone" size={16} />
+                <span>Call Bhusawal Centre</span>
+              </a>
+              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:underline">
+                <Icon name="map-pin" size={16} />
+                <span>View on Google Maps</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation & Legal Links */}
+      <div>
+        <h2 class="text-lg font-mono font-bold text-white mb-4">
+          Quick Links
+        </h2>
+        <ul class="space-y-2.5 text-base font-mono">
+          <li>
+            <a href="/courses" class="text-[#b0b0b0] hover:text-white underline">Courses & Batches</a>
+          </li>
+          <li>
+            <a href="/faculty" class="text-[#b0b0b0] hover:text-white underline">Teaching Faculty</a>
+          </li>
+          <li>
+            <a href="/results" class="text-[#b0b0b0] hover:text-white underline">Verified Results</a>
+          </li>
+          <li>
+            <a href="/reviews" class="text-[#b0b0b0] hover:text-white underline">Student & Parent Reviews</a>
+          </li>
+          <li>
+            <a href="/centres" class="text-[#b0b0b0] hover:text-white underline">Centres & Timings</a>
+          </li>
+          <li>
+            <a href="/about" class="text-[#b0b0b0] hover:text-white underline">About & Franchise Relation</a>
+          </li>
+          <li>
+            <a href="/contact" class="text-[#b0b0b0] hover:text-white underline">Enquiry & Admissions</a>
+          </li>
+          <li class="pt-2">
+            <a href="#icon-credits-dialog" class="text-xs text-[#888888] hover:text-[#FFCB00] underline" id="open-icon-credits">
+              Icon credits (The Noun Project / Lucide)
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Footer Bottom Bar */}
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-mono text-[#888888]">
+      <p class="m-0">
+        &copy; {currentYear} Jaishnu IIT Gurukul / Pace IIT & Medical, Jalgaon & Bhusawal. All rights reserved.
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="/about" class="text-[#888888] hover:text-white underline">Franchise Note</a>
+        <a href="/contact" class="text-[#888888] hover:text-white underline">Privacy & Admissions Policy</a>
+      </div>
+    </div>
+  </div>
+
+  {/* Icon Credits Modal Dialog */}
+  <dialog id="icon-credits-modal" class="bg-[#141414] text-white border border-[#333333] rounded-2xl p-6 max-w-xl w-[90vw] backdrop:bg-black/75">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#262626]">
+      <h3 class="text-xl font-mono font-bold text-white">Icon Licensing & Credits</h3>
+      <button id="close-icon-credits" class="p-2 text-[#999999] hover:text-white" aria-label="Close icon credits modal">
+        <Icon name="x" size={20} />
+      </button>
+    </div>
+    <div class="text-sm font-sans space-y-3 text-[#cccccc] max-h-[60vh] overflow-y-auto pr-2">
+      <p>
+        Icons are functional elements sourced from <strong>The Noun Project</strong> and temporary open-source stand-ins (Lucide, MIT License).
+      </p>
+      <p class="text-xs font-mono text-[#999999]">
+        Tracked in detail under <code class="text-[#FFCB00]">src/assets/icons/ICONS.md</code> per brand attribution requirements.
+      </p>
+      <ul class="list-disc pl-5 space-y-1 text-xs font-mono text-[#aaaaaa]">
+        <li>Phone, Clock, Map Pin, Mail, Book, Award, User, Graduation Cap</li>
+        <li>Current temporary stand-ins: Lucide (MIT License)</li>
+        <li>Final SVGs: The Noun Project (Monochrome collection)</li>
+      </ul>
+    </div>
+  </dialog>
+</footer>
+
+<script>
+  function setupIconCreditsModal() {
+    const openBtn = document.getElementById('open-icon-credits');
+    const closeBtn = document.getElementById('close-icon-credits');
+    const modal = document.getElementById('icon-credits-modal') as HTMLDialogElement | null;
+
+    if (!openBtn || !closeBtn || !modal) return;
+
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      modal.showModal();
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.close();
+    });
+
+    modal.addEventListener('click', (e) => {
+      const rect = modal.getBoundingClientRect();
+      const isInDialog = (
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog) {
+        modal.close();
+      }
+    });
+  }
+
+  setupIconCreditsModal();
+  document.addEventListener('astro:page-load', setupIconCreditsModal);
+</script>

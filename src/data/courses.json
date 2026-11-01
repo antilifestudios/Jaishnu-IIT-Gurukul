@@ -1,0 +1,17 @@
+[
+  {
+    "id": "course-placeholder",
+    "name": "PLACEHOLDER: replace me",
+    "targetExam": "JEE (Main & Advanced)",
+    "eligibility": "PLACEHOLDER: replace me",
+    "duration": "PLACEHOLDER: replace me",
+    "timings": "PLACEHOLDER: replace me",
+    "mode": "Classroom Offline",
+    "features": [
+      "PLACEHOLDER: replace me"
+    ],
+    "fees": null,
+    "feeDisplay": "contact_us",
+    "isPlaceholder": true
+  }
+]

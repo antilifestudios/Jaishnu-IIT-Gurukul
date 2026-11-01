@@ -1,0 +1,13 @@
+[
+  {
+    "id": "faculty-placeholder",
+    "name": "PLACEHOLDER: replace me",
+    "subject": "Physics",
+    "qualification": "PLACEHOLDER: replace me",
+    "experienceYears": 10,
+    "bio": "PLACEHOLDER: replace me",
+    "photoUrl": null,
+    "centres": ["jalgaon", "bhusawal"],
+    "isPlaceholder": true
+  }
+]

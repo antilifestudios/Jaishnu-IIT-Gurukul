@@ -1,0 +1,85 @@
+---
+import LogoGlow from './LogoGlow.astro';
+import Icon from './Icon.astro';
+import PlaceholderNotice from './PlaceholderNotice.astro';
+
+interface Props {
+  phone?: string;
+  whatsapp?: string;
+}
+
+const {
+  phone = "+919876543210",
+  whatsapp = "919876543210"
+} = Astro.props;
+
+const whatsappUrl = `https://wa.me/${whatsapp}?text=Hello%2C%20I%20am%20enquiring%20for%20admissions%20at%20Jaishnu%20IIT%20Gurukul%20Pace`;
+---
+
+<section class="relative pt-6 pb-12 md:pt-10 md:pb-20 overflow-hidden bg-[#090909] border-b border-[#1c1c1c]">
+  <div class="container-wide">
+    <div class="flex flex-col items-center text-center max-w-4xl mx-auto">
+      {/* Brand Emblem with Light-from-Behind Effect */}
+      <div class="mb-4 md:mb-6 w-full flex justify-center">
+        <LogoGlow theme="dark" size="hero" />
+      </div>
+
+      {/* Suggested Brand Lockup */}
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#141414] border border-[#262626] mb-4">
+        <span class="w-2 h-2 rounded-full bg-[#FFCB00]"></span>
+        <span class="font-mono text-xs sm:text-sm text-[#e0e0e0] font-medium tracking-tight">
+          Jaishnu IIT Gurukul · Pace IIT & Medical, Jalgaon & Bhusawal
+        </span>
+      </div>
+
+      {/* One-Line Promise / Headline */}
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-mono font-bold text-white tracking-tight leading-[1.15] mb-4">
+        Right Dream, Right Place.
+      </h1>
+
+      {/* Clear description for parents and students */}
+      <p class="text-lg sm:text-xl text-[#d1d1d1] max-w-2xl mb-6 leading-relaxed">
+        Family-run classroom coaching preparing students for IIT-JEE, NEET-UG, and Foundation in Jalgaon and Bhusawal.
+      </p>
+
+      {/* Dual CTAs (WhatsApp Primary + Call Now) */}
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mb-8">
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 text-base sm:text-lg font-mono font-bold text-black bg-[#FFCB00] rounded-full hover:bg-[#e6b800] active:scale-95 transition-all shadow-lg shadow-[#FFCB00]/15 min-h-[48px] no-underline"
+          aria-label="Enquire via WhatsApp directly"
+        >
+          <Icon name="whatsapp" size={22} class="text-black" />
+          <span>WhatsApp Us</span>
+        </a>
+
+        <a
+          href={`tel:${phone}`}
+          class="flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 text-base sm:text-lg font-mono font-semibold text-white bg-[#141414] border border-[#333333] rounded-full hover:bg-[#1c1c1c] hover:border-[#555555] active:scale-95 transition-all min-h-[48px] no-underline"
+          aria-label="Call admissions phone directly"
+        >
+          <Icon name="phone" size={20} class="text-[#FFCB00]" />
+          <span>Call: Contact Us</span>
+        </a>
+      </div>
+
+      {/* Key Quick-Fact Badges */}
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 w-full max-w-2xl text-left">
+        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
+          <span class="block text-xs font-mono text-[#999999] uppercase">Locations</span>
+          <span class="block text-base font-mono font-medium text-white">Jalgaon & Bhusawal</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
+          <span class="block text-xs font-mono text-[#999999] uppercase">Target Batches</span>
+          <span class="block text-base font-mono font-medium text-white">Class 8–12 & Droppers</span>
+        </div>
+        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
+          <span class="block text-xs font-mono text-[#999999] uppercase">Program Focus</span>
+          <span class="block text-base font-mono font-medium text-white">IIT-JEE & NEET-UG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
