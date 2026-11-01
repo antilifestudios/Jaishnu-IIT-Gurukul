@@ -41,18 +41,25 @@ body {
   min-height: 100vh;
   background-color: #090909;
   color: #ffffff;
-  font-size: 1.125rem; /* 18px mobile */
+  font-size: 1.125rem;
+  /* 18px mobile */
   line-height: 1.65;
 }
 
 @media (min-width: 1024px) {
   body {
-    font-size: 1.25rem; /* 20px desktop */
+    font-size: 1.25rem;
+    /* 20px desktop */
   }
 }
 
 /* Typography Hierarchy */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-mono);
   font-weight: 700;
   line-height: 1.25;
@@ -72,7 +79,8 @@ p {
 .text-secondary,
 .text-caption,
 small {
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
+  /* 16px */
   line-height: 1.5;
   color: #999999;
 }
@@ -105,7 +113,8 @@ button,
   align-items: center;
   justify-content: center;
   font-family: var(--font-mono);
-  font-size: 1.0625rem; /* 17px */
+  font-size: 1.0625rem;
+  /* 17px */
   font-weight: 500;
   border-radius: 9999px;
   padding: 12px 24px;
@@ -148,7 +157,9 @@ button:active,
 }
 
 /* Form Inputs */
-input, select, textarea {
+input,
+select,
+textarea {
   min-height: 52px;
   font-size: 1.125rem;
   font-family: var(--font-sans);
@@ -162,7 +173,9 @@ input, select, textarea {
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #FFCB00;
   outline: none;
   box-shadow: 0 0 0 1px #FFCB00;
