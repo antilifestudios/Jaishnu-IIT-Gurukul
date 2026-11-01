@@ -1,7 +1,5 @@
 ---
 import LogoGlow from './LogoGlow.astro';
-import Icon from './Icon.astro';
-import PlaceholderNotice from './PlaceholderNotice.astro';
 
 interface Props {
   phone?: string;
@@ -12,72 +10,53 @@ const {
   phone = "+919860267927",
   whatsapp = "919860267927"
 } = Astro.props;
-
-const whatsappUrl = `https://wa.me/${whatsapp}?text=Hello%2C%20I%20am%20enquiring%20for%20admissions%20at%20Jaishnu%20IIT%20Gurukul%20Pace`;
 ---
 
-<section class="relative pt-6 pb-12 md:pt-10 md:pb-20 overflow-hidden bg-[#090909] border-b border-[#1c1c1c]">
-  <div class="container-wide">
-    <div class="flex flex-col items-center text-center max-w-4xl mx-auto">
-      {/* Brand Emblem with Light-from-Behind Effect */}
-      <div class="mb-4 md:mb-6 w-full flex justify-center">
-        <LogoGlow theme="dark" size="hero" />
-      </div>
+<section class="relative py-10 sm:py-12 md:py-16 bg-[#090909] border-b border-[#1c1c1c] overflow-hidden flex flex-col justify-center">
+  {/* Visually hidden H1 for SEO and Screen Readers */}
+  <h1 class="sr-only">
+    IIT-JEE &amp; NEET-UG Coaching in Jalgaon &amp; Bhusawal | Jaishnu IIT Gurukul
+  </h1>
 
-      {/* Suggested Brand Lockup */}
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#141414] border border-[#262626] mb-4">
-        <span class="w-2 h-2 rounded-full bg-[#FFCB00]"></span>
-        <span class="font-mono text-xs sm:text-sm text-[#e0e0e0] font-medium tracking-tight">
-          Jaishnu IIT Gurukul · Pace IIT & Medical, Jalgaon & Bhusawal
-        </span>
-      </div>
-
-      {/* One-Line Promise / Headline */}
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-mono font-bold text-white tracking-tight leading-[1.15] mb-4">
-        Right Dream, Right Place.
-      </h1>
-
-      {/* Clear description for parents and students */}
-      <p class="text-lg sm:text-xl text-[#d1d1d1] max-w-2xl mb-6 leading-relaxed">
-        Family-run classroom coaching preparing students for IIT-JEE, NEET-UG, and Foundation in Jalgaon and Bhusawal.
-      </p>
-
-      {/* Dual CTAs (WhatsApp Primary + Call Now) */}
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mb-8">
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 text-base sm:text-lg font-mono font-bold text-black bg-[#FFCB00] rounded-full hover:bg-[#e6b800] active:scale-95 transition-all shadow-lg shadow-[#FFCB00]/15 min-h-[48px] no-underline"
-          aria-label="Enquire via WhatsApp directly"
-        >
-          <Icon name="whatsapp" size={22} class="text-black" />
-          <span>WhatsApp Us</span>
-        </a>
-
-        <a
-          href={`tel:${phone}`}
-          class="flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 text-base sm:text-lg font-mono font-semibold text-white bg-[#141414] border border-[#333333] rounded-full hover:bg-[#1c1c1c] hover:border-[#555555] active:scale-95 transition-all min-h-[48px] no-underline"
-          aria-label="Call admissions phone directly"
-        >
-          <Icon name="phone" size={20} class="text-[#FFCB00]" />
-          <span>Call: Contact Us</span>
-        </a>
-      </div>
-
-      {/* Key Quick-Fact Badges */}
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4 w-full max-w-2xl text-left">
-        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
-          <span class="block text-xs font-mono text-[#999999] uppercase">Locations</span>
-          <span class="block text-base font-mono font-medium text-white">Jalgaon & Bhusawal</span>
+  <div class="w-full px-4 sm:px-5 md:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col items-center">
+      {/* CENTERED ANIMATED LOGO AT THE TOP */}
+      <div class="w-full flex justify-center mb-8 sm:mb-10">
+        <div class="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[480px]">
+          <LogoGlow theme="dark" size="hero" class="mx-auto" />
         </div>
-        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
-          <span class="block text-xs font-mono text-[#999999] uppercase">Target Batches</span>
-          <span class="block text-base font-mono font-medium text-white">Class 8–12 & Droppers</span>
+      </div>
+
+      {/* THE 3 INFO BOXES DIRECTLY BENEATH (~40px gap): ONE ROW on desktop, equal width & equal height, stacked on mobile (<768px) */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-[940px] items-stretch">
+        {/* Box 1: Locations */}
+        <div class="info-card flex flex-col justify-center h-full min-h-[96px] sm:min-h-[104px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl bg-[#141414] border border-[#262626]">
+          <span class="block text-[14px] font-mono font-medium uppercase tracking-[0.08em] text-[#cccccc] leading-none mb-2.5">
+            LOCATIONS
+          </span>
+          <span class="block text-[20px] md:text-[22px] font-mono font-semibold text-white leading-snug">
+            Jalgaon &amp; Bhusawal
+          </span>
         </div>
-        <div class="p-3.5 rounded-xl bg-[#141414] border border-[#262626]">
-          <span class="block text-xs font-mono text-[#999999] uppercase">Program Focus</span>
-          <span class="block text-base font-mono font-medium text-white">IIT-JEE & NEET-UG</span>
+
+        {/* Box 2: Target Batches */}
+        <div class="info-card flex flex-col justify-center h-full min-h-[96px] sm:min-h-[104px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl bg-[#141414] border border-[#262626]">
+          <span class="block text-[14px] font-mono font-medium uppercase tracking-[0.08em] text-[#cccccc] leading-none mb-2.5">
+            TARGET BATCHES
+          </span>
+          <span class="block text-[20px] md:text-[22px] font-mono font-semibold text-white leading-snug">
+            6th - 12th &amp; Droppers
+          </span>
+        </div>
+
+        {/* Box 3: Program Focus */}
+        <div class="info-card flex flex-col justify-center h-full min-h-[96px] sm:min-h-[104px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl bg-[#141414] border border-[#262626]">
+          <span class="block text-[14px] font-mono font-medium uppercase tracking-[0.08em] text-[#cccccc] leading-none mb-2.5">
+            PROGRAM FOCUS
+          </span>
+          <span class="block text-[20px] md:text-[22px] font-mono font-semibold text-white leading-snug">
+            IIT-JEE &amp; NEET-UG
+          </span>
         </div>
       </div>
     </div>
