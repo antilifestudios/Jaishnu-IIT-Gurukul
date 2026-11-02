@@ -12,24 +12,41 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative py-10 sm:py-12 md:py-16 bg-[#090909] border-b border-[#1c1c1c] overflow-hidden flex flex-col justify-center">
+<section class="relative py-10 sm:py-12 md:py-16 lg:py-20 lg:min-h-[620px] bg-[#090909] border-b border-[#1c1c1c] overflow-hidden flex flex-col justify-center">
   {/* Visually hidden H1 for SEO and Screen Readers */}
   <h1 class="sr-only">
     IIT-JEE &amp; NEET-UG Coaching in Jalgaon &amp; Bhusawal | Jaishnu IIT Gurukul
   </h1>
 
-  <div class="w-full px-4 sm:px-5 md:px-8">
+  {/* DESKTOP-ONLY DECORATIVE BACKGROUND COMPOSITION (1024px+) */}
+  <div class="hidden lg:block pointer-events-none absolute inset-0 z-0 overflow-hidden select-none" aria-hidden="true">
+    {/* Subtle ambient warm gold glows */}
+    <div class="absolute -left-24 top-1/4 w-[460px] h-[460px] rounded-full bg-[radial-gradient(circle,rgba(255,203,0,0.045)_0%,transparent_70%)] blur-2xl"></div>
+    <div class="absolute -right-24 top-1/3 w-[460px] h-[460px] rounded-full bg-[radial-gradient(circle,rgba(255,203,0,0.04)_0%,transparent_70%)] blur-2xl"></div>
+
+    {/* LEFT SIDE: IIT-JEE / Physics / Mathematics */}
+    <img src="/bg/Lab-setup.svg" alt="" class="hero-deco-lab" />
+    <img src="/bg/Eqn1.svg" alt="" class="hero-deco-eqn1" />
+    <img src="/bg/Eqn2.svg" alt="" class="hero-deco-eqn2" />
+
+    {/* RIGHT SIDE: NEET / Biology / Chemistry */}
+    <img src="/bg/Chromosome.svg" alt="" class="hero-deco-chromosome" />
+    <img src="/bg/Microsope.svg" alt="" class="hero-deco-microscope" />
+    <img src="/bg/Dna.svg" alt="" class="hero-deco-dna" />
+  </div>
+
+  {/* CENTER CONTENT */}
+  <div class="relative z-10 w-full px-4 sm:px-5 md:px-8">
     <div class="max-w-6xl mx-auto flex flex-col items-center">
-      {/* CENTERED ANIMATED LOGO AT THE TOP */}
+      {/* CENTERED ANIMATED LOGO */}
       <div class="w-full flex justify-center mb-8 sm:mb-10">
         <div class="w-full max-w-[340px] sm:max-w-[420px] md:max-w-[480px]">
           <LogoGlow theme="dark" size="hero" class="mx-auto" />
         </div>
       </div>
 
-      {/* THE 3 INFO BOXES DIRECTLY BENEATH (~40px gap): ONE ROW on desktop, equal width & equal height, stacked on mobile (<768px) */}
+      {/* 3 INFO BOXES */}
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-[940px] items-stretch">
-        {/* Box 1: Locations */}
         <div class="info-card flex flex-col justify-center h-full min-h-[96px] sm:min-h-[104px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl bg-[#141414] border border-[#262626]">
           <span class="block text-[14px] font-mono font-medium uppercase tracking-[0.08em] text-[#cccccc] leading-none mb-2.5">
             LOCATIONS
@@ -39,7 +56,6 @@ const {
           </span>
         </div>
 
-        {/* Box 2: Target Batches */}
         <div class="info-card flex flex-col justify-center h-full min-h-[96px] sm:min-h-[104px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl bg-[#141414] border border-[#262626]">
           <span class="block text-[14px] font-mono font-medium uppercase tracking-[0.08em] text-[#cccccc] leading-none mb-2.5">
             TARGET BATCHES
@@ -49,7 +65,6 @@ const {
           </span>
         </div>
 
-        {/* Box 3: Program Focus */}
         <div class="info-card flex flex-col justify-center h-full min-h-[96px] sm:min-h-[104px] px-6 sm:px-7 py-5 sm:py-6 rounded-2xl bg-[#141414] border border-[#262626]">
           <span class="block text-[14px] font-mono font-medium uppercase tracking-[0.08em] text-[#cccccc] leading-none mb-2.5">
             PROGRAM FOCUS
@@ -62,3 +77,96 @@ const {
     </div>
   </div>
 </section>
+
+<style>
+  /* Base styles for decorative background illustrations */
+  .hero-deco-lab,
+  .hero-deco-eqn1,
+  .hero-deco-eqn2,
+  .hero-deco-chromosome,
+  .hero-deco-microscope,
+  .hero-deco-dna {
+    position: absolute;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .hero-deco-lab        { transform: rotate(-1deg); opacity: 0.28; filter: sepia(0.3) brightness(0.95); }
+  .hero-deco-eqn1       { transform: rotate(-6deg); opacity: 0.28; filter: sepia(0.3) brightness(0.95); }
+  .hero-deco-eqn2       { transform: rotate(-4deg); opacity: 0.26; filter: sepia(0.3) brightness(0.95); }
+
+  /* Image 2 shows a filled grey disc. If yours renders as an outline, delete invert(1) here. */
+  .hero-deco-chromosome { transform: rotate(5deg);  opacity: 0.28; filter: invert(1) sepia(0.25) brightness(0.95); }
+  .hero-deco-microscope { transform: rotate(-3deg); opacity: 0.30; filter: invert(1) sepia(0.25) brightness(0.95); }
+  .hero-deco-dna        { transform: rotate(2deg);  opacity: 0.28; filter: invert(1) sepia(0.25) brightness(0.95); }
+
+  /* ───────── Laptop: 1024px – 1279px ───────── */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .hero-deco-lab {
+      left: 2%;
+      bottom: 4%;
+      width: clamp(150px, min(15vw, 36vh), 200px);
+    }
+    .hero-deco-eqn1 {
+      top: 6%;
+      left: 20%;
+      width: clamp(110px, min(12vw, 24vh), 160px);
+    }
+    .hero-deco-eqn2 {
+      top: 46%;
+      left: 17%;
+      width: clamp(100px, min(10vw, 20vh), 140px);
+    }
+    .hero-deco-dna {
+      top: 26%;
+      right: 15%;
+      width: clamp(110px, min(12vw, 28vh), 150px);
+    }
+    .hero-deco-chromosome {
+      top: 4%;
+      right: 3%;
+      width: clamp(120px, min(12vw, 26vh), 170px);
+    }
+    .hero-deco-microscope {
+      bottom: 4%;
+      right: 2%;
+      width: clamp(90px, min(9vw, 22vh), 125px);
+    }
+  }
+
+  /* ───────── Desktop: 1280px+ ───────── */
+  @media (min-width: 1280px) {
+    .hero-deco-lab {
+      left: 3%;
+      bottom: 5%;
+      width: clamp(200px, min(16vw, 40vh), 340px);
+    }
+    .hero-deco-eqn1 {
+      top: 8%;
+      left: 24%;
+      width: clamp(160px, min(13vw, 26vh), 260px);
+    }
+    .hero-deco-eqn2 {
+      top: 48%;
+      left: 20%;
+      width: clamp(130px, min(10vw, 20vh), 210px);
+    }
+    .hero-deco-dna {
+      top: 28%;
+      right: 17%;
+      width: clamp(150px, min(13vw, 32vh), 280px);
+    }
+    .hero-deco-chromosome {
+      top: 4%;
+      right: 3%;
+      width: clamp(150px, min(12vw, 30vh), 260px);
+    }
+    .hero-deco-microscope {
+      bottom: 4%;
+      right: 2%;
+      width: clamp(110px, min(9vw, 24vh), 190px);
+    }
+  }
+</style>
