@@ -21,6 +21,21 @@ function isActive(href: string): boolean {
   if (href !== '/' && currentPath.startsWith(href)) return true;
   return false;
 }
+
+interface PhoneContact {
+  section: string;
+  phone: string;
+  label?: string;
+}
+
+const phoneNumbers: PhoneContact[] = [
+  { section: 'Jalgaon', phone: '9607888009' },
+  { section: 'Bhusawal', phone: '9607883003' },
+  { section: 'Leadership', phone: '9860267927', label: 'Managing Director' },
+  { section: 'Leadership', phone: '8551000666', label: 'Academic Director' },
+];
+
+const callSections = [...new Set(phoneNumbers.map((p) => p.section))];
 ---
 
 <header class="sticky top-0 z-40 w-full bg-[#090909]/95 backdrop-blur-md border-b border-[#262626]">
@@ -98,93 +113,45 @@ function isActive(href: string): boolean {
           {/* Accessibility Live Announcement for Copy Action */}
           <div class="sr-only" aria-live="polite" id="copy-announcement"></div>
 
-          {/* JALGAON Group */}
-          <div class="px-3 pt-2 pb-1 text-[14px] font-mono font-bold tracking-wider text-[#FFCB00] uppercase">
-            Jalgaon
-          </div>
-          <div class="flex flex-col gap-1.5">
-            {/* Jalgaon Number 1 */}
-            <a
-              href="tel:+919607888009"
-              data-phone="9607888009"
-              role="menuitem"
-              class="number-row flex items-center justify-between px-4 py-3 min-h-[56px] rounded-xl bg-[#1a1a1a] hover:bg-[#222222] border border-[#2a2a2a] hover:border-[#444444] text-white transition-all no-underline group cursor-pointer"
-            >
-              <div class="row-content flex flex-col justify-center min-w-0">
-                <span class="phone-digits text-[20px] font-mono font-semibold tracking-[0.02em] text-white group-hover:text-[#FFCB00] transition-colors leading-tight">
-                  9607888009
-                </span>
+          {callSections.map((section, idx) => (
+            <>
+              {idx > 0 && <div class="h-px bg-[#262626] my-2.5" />}
+              <div
+                class:list={[
+                  "px-3 pb-1 text-[14px] font-mono font-bold tracking-wider text-[#FFCB00] uppercase",
+                  idx === 0 ? "pt-2" : "pt-1"
+                ]}
+              >
+                {section}
               </div>
-              <div class="icon-indicator flex items-center justify-center shrink-0 ml-3">
-                <Icon name="phone" size={22} class="text-[#FFCB00]" />
+              <div class="flex flex-col gap-1.5">
+                {phoneNumbers
+                  .filter((item) => item.section === section)
+                  .map((item) => (
+                    <a
+                      href={`tel:+91${item.phone}`}
+                      data-phone={item.phone}
+                      role="menuitem"
+                      class="number-row flex items-center justify-between px-4 py-3 min-h-[56px] rounded-xl bg-[#1a1a1a] hover:bg-[#222222] border border-[#2a2a2a] hover:border-[#444444] text-white transition-all no-underline group cursor-pointer"
+                    >
+                      <div class="row-content flex flex-col justify-center min-w-0">
+                        <span class="phone-digits text-[20px] font-mono font-semibold tracking-[0.02em] text-white group-hover:text-[#FFCB00] transition-colors leading-tight">
+                          {item.phone}
+                        </span>
+                        {item.label && (
+                          <span class="director-label text-[15px] font-sans text-[#cccccc] font-medium leading-tight mt-1">
+                            {item.label}
+                          </span>
+                        )}
+                      </div>
+                      <div class="icon-indicator flex items-center justify-center shrink-0 ml-3">
+                        <Icon name="phone" size={22} class="text-[#FFCB00]" />
+                      </div>
+                    </a>
+                  ))}
               </div>
-            </a>
-
-            {/* Jalgaon Number 2 (Center Director) */}
-            <a
-              href="tel:+919860267927"
-              data-phone="9860267927"
-              role="menuitem"
-              class="number-row flex items-center justify-between px-4 py-3 min-h-[56px] rounded-xl bg-[#1a1a1a] hover:bg-[#222222] border border-[#2a2a2a] hover:border-[#444444] text-white transition-all no-underline group cursor-pointer"
-            >
-              <div class="row-content flex flex-col justify-center min-w-0">
-                <span class="phone-digits text-[20px] font-mono font-semibold tracking-[0.02em] text-white group-hover:text-[#FFCB00] transition-colors leading-tight">
-                  9860267927
-                </span>
-                <span class="director-label text-[15px] font-sans text-[#cccccc] font-medium leading-tight mt-1">
-                  Center Director
-                </span>
-              </div>
-              <div class="icon-indicator flex items-center justify-center shrink-0 ml-3">
-                <Icon name="phone" size={22} class="text-[#FFCB00]" />
-              </div>
-            </a>
-          </div>
-
-          <div class="h-px bg-[#262626] my-2.5"></div>
-
-          {/* BHUSAWAL Group */}
-          <div class="px-3 pt-1 pb-1 text-[14px] font-mono font-bold tracking-wider text-[#FFCB00] uppercase">
-            Bhusawal
-          </div>
-          <div class="flex flex-col gap-1.5">
-            {/* Bhusawal Number 1 */}
-            <a
-              href="tel:+919607883003"
-              data-phone="9607883003"
-              role="menuitem"
-              class="number-row flex items-center justify-between px-4 py-3 min-h-[56px] rounded-xl bg-[#1a1a1a] hover:bg-[#222222] border border-[#2a2a2a] hover:border-[#444444] text-white transition-all no-underline group cursor-pointer"
-            >
-              <div class="row-content flex flex-col justify-center min-w-0">
-                <span class="phone-digits text-[20px] font-mono font-semibold tracking-[0.02em] text-white group-hover:text-[#FFCB00] transition-colors leading-tight">
-                  9607883003
-                </span>
-              </div>
-              <div class="icon-indicator flex items-center justify-center shrink-0 ml-3">
-                <Icon name="phone" size={22} class="text-[#FFCB00]" />
-              </div>
-            </a>
-
-            {/* Bhusawal Number 2 (Center Director) */}
-            <a
-              href="tel:+918551000666"
-              data-phone="8551000666"
-              role="menuitem"
-              class="number-row flex items-center justify-between px-4 py-3 min-h-[56px] rounded-xl bg-[#1a1a1a] hover:bg-[#222222] border border-[#2a2a2a] hover:border-[#444444] text-white transition-all no-underline group cursor-pointer"
-            >
-              <div class="row-content flex flex-col justify-center min-w-0">
-                <span class="phone-digits text-[20px] font-mono font-semibold tracking-[0.02em] text-white group-hover:text-[#FFCB00] transition-colors leading-tight">
-                  8551000666
-                </span>
-                <span class="director-label text-[15px] font-sans text-[#cccccc] font-medium leading-tight mt-1">
-                  Center Director
-                </span>
-              </div>
-              <div class="icon-indicator flex items-center justify-center shrink-0 ml-3">
-                <Icon name="phone" size={22} class="text-[#FFCB00]" />
-              </div>
-            </a>
-          </div>
+            </>
+          ))}
         </div>
       </div>
 
