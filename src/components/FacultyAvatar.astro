@@ -1,0 +1,26 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class:list={["w-full h-full block", className]}
+  aria-hidden="true"
+>
+  <rect width="64" height="64" fill="#1f1f1f" />
+  <!-- Neutral head -->
+  <circle cx="32" cy="24" r="10.5" fill="#3a3a3a" />
+  <!-- Neutral shoulders -->
+  <path
+    d="M15 55C15 44.5 22.5 40 32 40C41.5 40 49 44.5 49 55V64H15V55Z"
+    fill="#3a3a3a"
+  />
+</svg>

@@ -1,0 +1,200 @@
+---
+import { faculty } from '../data/faculty';
+import FacultyAvatar from './FacultyAvatar.astro';
+
+const totalYears = faculty.reduce((sum, f) => sum + f.years, 0);
+const uniqueSubjects = [...new Set(faculty.map((f) => f.subject))];
+const subjectListText = uniqueSubjects.length > 1
+  ? `${uniqueSubjects.slice(0, -1).join(', ')} & ${uniqueSubjects[uniqueSubjects.length - 1]}`
+  : (uniqueSubjects[0] || '');
+const subtitle = `${totalYears}+ years of combined experience across ${subjectListText}.`;
+---
+
+<section id="faculty" class="scroll-mt-24 py-12 sm:py-14 bg-[#090909] border-b border-[#1c1c1c]">
+  <div class="max-w-[940px] mx-auto px-4 sm:px-5 md:px-8">
+    {/* Heading Block: Left-aligned */}
+    <div class="text-left">
+      <span class="block text-[13px] font-mono font-medium uppercase tracking-[0.08em] text-[#FFCB00] leading-none mb-2">
+        TEACHING FACULTY
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-mono font-semibold text-white leading-tight m-0">
+        Meet Our Faculty
+      </h2>
+      <p class="text-sm sm:text-base font-mono text-[#9a9a9a] mt-2 mb-0 leading-relaxed max-w-2xl">
+        {subtitle}
+      </p>
+    </div>
+
+    {/* Faculty Cards Grid */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-6">
+      {faculty.map((member) => (
+        <article
+          class="faculty-card relative bg-[#141414] border border-[#262626] rounded-2xl p-4 flex items-center gap-4 min-w-0"
+          tabindex="0"
+        >
+          {/* Left: Avatar (64px, rounded-xl, 2px gold ring at ~40% opacity) */}
+          <div class="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-[#1f1f1f]">
+            <div
+              class="faculty-avatar-ring pointer-events-none absolute inset-0 rounded-xl border-2 border-[#FFCB00] z-10"
+              aria-hidden="true"
+            />
+            {member.photo ? (
+              <img
+                src={member.photo}
+                width="64"
+                height="64"
+                loading="lazy"
+                class="w-full h-full object-cover"
+                alt={`${member.name} ${member.title}, ${member.subject} faculty`}
+              />
+            ) : (
+              <FacultyAvatar />
+            )}
+          </div>
+
+          {/* Right: Info block */}
+          <div class="flex-1 min-w-0 flex flex-col justify-center">
+            <div class="mb-1">
+              <span class="inline-block px-2.5 py-0.5 text-[11px] sm:text-[12px] font-mono font-medium uppercase tracking-wider text-[#FFCB00] bg-[#FFCB00]/10 border border-[#FFCB00]/30 rounded-full">
+                {member.subject}
+              </span>
+            </div>
+            <h3 class="text-[15px] font-mono font-semibold text-white leading-tight break-words m-0">
+              {member.name} {member.title}
+            </h3>
+            <p class="text-[13px] font-mono text-[#cccccc] leading-snug mt-1 mb-0 break-words">
+              {member.qualification}
+            </p>
+            <p class="text-[13px] font-mono text-[#9a9a9a] leading-snug mt-0.5 mb-0">
+              {member.years} yrs experience
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base state for flashlight and border layers */
+  .faculty-card {
+    overflow: hidden;
+    outline: none;
+  }
+
+  .faculty-card::before,
+  .faculty-card::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+  }
+
+  /* Flashlight glow overlay */
+  .faculty-card::before {
+    inset: 0;
+    background: radial-gradient(
+      240px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(255, 203, 0, 0.10),
+      transparent 70%
+    );
+    z-index: 1;
+  }
+
+  /* Gold border layer (rgba(255,203,0,0.45)) */
+  .faculty-card::after {
+    inset: -1px;
+    border: 1px solid rgba(255, 203, 0, 0.45);
+    z-index: 2;
+  }
+
+  /* Avatar ring: 2px gold ring at ~40% opacity at rest */
+  .faculty-avatar-ring {
+    opacity: 0.40;
+    transition: opacity 200ms ease-out;
+  }
+
+  /* Card content stacked above pseudo-element layers */
+  .faculty-card > * {
+    position: relative;
+    z-index: 3;
+  }
+
+  /* Hover & fine-pointer interactions */
+  @media (hover: hover) and (pointer: fine) {
+    .faculty-card:hover::before,
+    .faculty-card:focus-within::before {
+      opacity: 1;
+    }
+
+    .faculty-card:hover::after,
+    .faculty-card:focus-within::after {
+      opacity: 1;
+    }
+
+    .faculty-card:hover .faculty-avatar-ring,
+    .faculty-card:focus-within .faculty-avatar-ring {
+      opacity: 1;
+    }
+  }
+
+  /* Keyboard focus states */
+  .faculty-card:focus-visible::before {
+    opacity: 1;
+  }
+
+  .faculty-card:focus-visible::after {
+    opacity: 1;
+  }
+
+  .faculty-card:focus-visible .faculty-avatar-ring {
+    opacity: 1;
+  }
+
+  .faculty-card:focus-visible {
+    outline: 2px solid #FFCB00;
+    outline-offset: 2px;
+  }
+
+  /* Motion: translateY(-2px), wrapped in prefers-reduced-motion: no-preference */
+  @media (prefers-reduced-motion: no-preference) {
+    .faculty-card {
+      transition: transform 200ms ease-out;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .faculty-card:hover,
+      .faculty-card:focus-within {
+        transform: translateY(-2px);
+      }
+    }
+
+    .faculty-card:focus-visible {
+      transform: translateY(-2px);
+    }
+  }
+</style>
+
+<script>
+  function setupFacultyCards() {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return;
+    }
+    const cards = document.querySelectorAll<HTMLElement>('.faculty-card');
+    cards.forEach((card) => {
+      if (card.dataset.hasPointerGlow === 'true') return;
+      card.dataset.hasPointerGlow = 'true';
+
+      card.addEventListener('pointermove', (e: PointerEvent) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      });
+    });
+  }
+
+  setupFacultyCards();
+  document.addEventListener('astro:page-load', setupFacultyCards);
+</script>
